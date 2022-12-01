@@ -15,8 +15,6 @@ Okay, enjoy and happy holidays!
 
 P.S. I borrowed a lot of information and ideas from this source, so I want to highlight it again here: https://ggplot2-book.org/
 
-
-
 *** TO GET STARTED ***
 
 Click on the green button that says "CODE" and select "Download zip". This will download all the files for you to get started! I'd like to give people a chance to do this as an advent calendaR with minimal temptation to "cheat". After Christmas, I will post the full R Notebook file that I used to create this which has all 25 days in one file.
