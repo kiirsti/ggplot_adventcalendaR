@@ -11,7 +11,7 @@ So you want all your points to be one colour. Sounds easy-peasy right? Not quite
 
 Here's why it's a bit confusing. I had to do a bit of digging to understand exactly why this is...
 
-When we want to map a variable of our data (e.g., telling ggplot we want to colour by tree type), we put aes() inside the geom_point(). If we want to apply a constant colour (constant value) to our points (e.g., telling ggplot we want all our points to be blue), we put aes() OUTSIDE geom_point). Try both the codes below to see what happens. 
+When we want to map a variable of our data to an aesthetic (e.g., telling ggplot we want to colour by tree type), we put aes() inside the geom_point() and set the colour to that variable, like we did on day 5. If we want to apply a constant colour (constant value) to our points (e.g., telling ggplot we want all our points to be blue), we put the colour OUTSIDE aes(). Try both the codes below to see what happens. 
 
 ```{r}
 trees %>%
