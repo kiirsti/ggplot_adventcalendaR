@@ -1,7 +1,7 @@
 # ggplot_adventcalendaR
 25-day advent calendaR providing an introduction to ggplot2!
 
-<h1 style="color: #eb0e04A;"> Here it is! A 25-day ggplot advent calendaR, a follow-up to the <a href="https://kiirstio.wixsite.com/kowen/post/the-25-days-of-christmas-an-r-advent-calendar" >R advent calendaR </a> that teaches the very basics in R.
+Here it is! A 25-day ggplot advent calendaR, a follow-up to the <a href="https://kiirstio.wixsite.com/kowen/post/the-25-days-of-christmas-an-r-advent-calendar" >R advent calendaR </a> that teaches the very basics in R.
 
 I know there are so so so many topics I did not cover in this calendaR. I wanted to give you a basic intro to ggplot so I've tried to do so by covering a lot of material using a few examples per day to show the power, versatility, and structure of ggplot2. You may notice that I didn't cover anything related to maps or spatial R. My next goal is a spatial R calendaR (:
 
@@ -18,4 +18,4 @@ P.S. I borrowed a lot of information and ideas from this source, so I want to hi
 <br>
 *** TO GET STARTED ***
 
-Click on the green button that says "CODE" and select "Download zip". This will download all the files for you to get started! I'd like to give people a chance to do this as an advent calendaR with minimal temptation to "cheat". After Christmas, I will post the full R Notebook file that I used to create this which has all 25 days in one file.  </h1>
+Click on the green button that says "CODE" and select "Download zip". This will download all the files for you to get started! I'd like to give people a chance to do this as an advent calendaR with minimal temptation to "cheat". After Christmas, I will post the full R Notebook file that I used to create this which has all 25 days in one file.
