@@ -1,0 +1,56 @@
+---
+title: "The ggplot advent calendaR - DAY 13"
+output: html_notebook
+---
+On the thirteenth day of Christmas...
+
+... we introduced scales!
+
+To do this, we need to introduce scales. We'll be working with scales for a few days - get excited! Scales allow us to override defaults. Similar to themes, scales allow us more control over what our graphic looks like, but scales focus on changing the look of the data.
+
+Let's start with position scales. The most commonly used are scale_x_continuous() and scale_y_continuous(). Since we are working with categorical data right now (tree types), we could swap out scale_x_continuous() for scale_x_discrete(). Using these, we can set the limits of our scales. We don't need to change the limits of our discrete (x) axis, but let's change the limits of our y axis.
+
+Here's our boxplot graphic, but I've changed our y axis to Christmas magic instead of tree height:
+```{r}
+trees %>%
+ggplot(aes(x=type, y=xmas.magic))+
+  geom_boxplot(aes(fill=type), colour="black")+
+  labs(title="Christmas Trees", x=NULL, y="Christmas magic")+
+  theme_classic()
+```
+
+Now let's try changing the y-axis limits:
+```{r}
+trees %>%
+ggplot(aes(x=type, y=xmas.magic))+
+  geom_boxplot(aes(fill=type), colour="black")+
+  labs(title="Christmas Trees", x=NULL, y="Christmas magic")+
+  theme_classic()+
+  scale_y_continuous(limits=c(0,15))
+```
+Note: you can also use lims(x=c(#,#), y=c(#,#)) (replacing the #s with your desired limits). This is simpler and faster, but we will stick with scale_y_continuous() because we will make additional adjustments below.
+
+When we increased our y-axis limits, it changes the labels of our y-axis ticks to include 0.5s. Maybe we'd rather have whole numbers or maybe just fewer numbers altogether. We can specify this using the same scale_y_continuous() but adding "breaks=".
+
+```{r}
+trees %>%
+ggplot(aes(x=type, y=xmas.magic))+
+  geom_boxplot(aes(fill=type), colour="black")+
+  labs(title="Christmas Trees", x=NULL, y="Christmas magic")+
+  theme_classic()+
+  scale_y_continuous(limits=c(2,12), breaks=c(2, 7, 12))
+```
+
+If we don't want any breaks we can specify by using "breaks=NULL".
+
+Finally, we can modify the axis tick labels. Let's change the names of our x-axis tick labels.
+```{r}
+trees %>%
+ggplot(aes(x=type, y=xmas.magic))+
+  geom_boxplot(aes(fill=type), colour="black")+
+  labs(title="Christmas Trees", x=NULL, y="Christmas magic")+
+  theme_classic()+
+  scale_y_continuous(limits=c(2,12), breaks=c(2, 7, 12))+
+  scale_x_discrete(labels=c("Balsam Fir", "Jack Pine", "Blue Spruce"))
+```
+There's much much more that can be done with position scales. I suggest taking a look at Ch. 10 of this book by Hadley Wickham, Danielle Navarro, and Thomas Lin Pedersen, which I relied on heavily for this section. https://ggplot2-book.org/scale-position.html#scale-position

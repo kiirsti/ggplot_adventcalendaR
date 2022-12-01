@@ -1,0 +1,31 @@
+---
+title: "The ggplot advent calendaR - DAY 2"
+output: html_notebook
+---
+
+On the second day of Christmas...
+
+...we learned the language of ggplot aka the Grammar of Graphics! ggplot is different from base R graphics. How? Base R graphics work on the individual vectors, ggplot works on dataframes (Source: Prabhakaran, 2017). ggplot works by adding layer upon layer to create your visualization. In base R graphics, you put all the information in one code and it spits out a graphic. In ggplot, you build your graphic with layers.
+
+What are some of the different components of a graphic (Source: Freeman & Ross, 2019)?
+- data
+- geometric objects (geoms)
+- aesthetics
+- statistical transformations
+- position adjustments
+- scale
+- coordinate system
+- facets
+- themes
+
+The first layer of ggplot is always...ggplot. If you run the code below, you will get a blank graphic with a grey background. The grey background is the ggplot default. In base R, you can't run just function, e.g., boxplot(), without a vector in the brackets.
+
+```{r}
+ggplot()
+```
+Now let's add another layer to ggplot. We'll specify the dataset and what we want our x and y axes to be.
+```{r}
+ggplot(trees, aes(x=type, y=height))
+```
+When you run this code, you should see that we now have axes and labels on top of our grey background. Note, you can drop the x= and y= and the code will run the same (don't take my word for it, try it yourself!).
+

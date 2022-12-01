@@ -1,0 +1,21 @@
+---
+title: "The ggplot advent calendaR - DAY 24"
+output: html_notebook
+---
+
+On the twenty-fourth day of Christmas...
+
+...we put our knowledge to the test!
+
+Today we will not learn anything new. Instead, we will bring together what we've learned to build some plots!
+
+We will build three different plots:
+
+(1) Build a plot using the trees dataset that shows violin plots by tree type, also coloured by tree type. Add a title, informative axis labels, and a legend at the bottom.
+
+(2) Build a plot using the sleighs dataset that shows deerpower by weight, with a trendline, points coloured by km per carrot (with a size and shape where you can see the colour differences), and an informative title, axis labels, and legend.
+
+(3) Build an image that shows the previous two graphs side-by-side in one image with labels A and B.
+
+And as a little Christmas Eve gift, here is a fantastic cheatsheet for ggplot2. I keep it in my bookmarks bar :)
+https://github.com/rstudio/cheatsheets/blob/main/data-visualization-2.1.pdf - this might come in handy while you are working through these exercises!

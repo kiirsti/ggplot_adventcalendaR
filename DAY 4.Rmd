@@ -1,0 +1,33 @@
+---
+title: "The ggplot advent calendaR - DAY 4"
+output: html_notebook
+---
+
+On the fourth day of Christmas...
+
+...we introduced pipes!
+
+This is a bit of a segue from ggplot and you certainly don't need to use pipes to create beautiful ggplot graphics BUT it might make your data look more tidy.
+
+The pipe operator (%>%) is included in the tidyverse, so if you loaded the tidyverse, then you've got access to %>%. From R for Data Science, "Pipes are a powerful tool for clearly expressing a sequence of multiple operations...The point of the pipe is to help you write code in a way that is easier to read and understand." In words, %>% means "and then". By using a pipe, you're telling R to run the first line of code AND THEN run the next line of code.
+
+Why do I bring this up now? Previously, we ran this code to produce a boxplot showing tree heights:
+
+```{r}
+ggplot(trees, aes(x=type, y=height))+
+  geom_boxplot()
+```
+
+Often, in online examples and tutorials, you will see ggplot codes written with the dataframe listed first, then a pipe leading into the ggplot code. If you run the code below, you'll see that we can produce the exact same graphic:
+```{r}
+trees %>%
+ggplot(aes(x=type, y=height))+
+  geom_boxplot()
+```
+
+Another tip from my friend Pat, "The most useful application of the pipe is to plug the result of one function into another without creating intermediate data frames" Here's an example of what this might look like:
+
+my_data %>%
+  function1(arguments, etc) %>%
+  function2(arguments, etc)
+

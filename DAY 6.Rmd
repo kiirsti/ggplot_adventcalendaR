@@ -1,0 +1,27 @@
+---
+title: "The ggplot advent calendaR - DAY 6"
+output: html_notebook
+---
+
+On the sixth day of Christmas...
+
+...we continued with aesthetic mapping and colours!
+
+So you want all your points to be one colour. Sounds easy-peasy right? Not quite.
+
+Here's why it's a bit confusing. I had to do a bit of digging to understand exactly why this is...
+
+When we want to map a variable of our data (e.g., telling ggplot we want to colour by tree type), we put aes() inside the geom_point(). If we want to apply a constant colour (constant value) to our points (e.g., telling ggplot we want all our points to be blue), we put aes() OUTSIDE geom_point). Try both the codes below to see what happens. 
+
+```{r}
+trees %>%
+ggplot(aes(x=type, y=height))+
+  geom_point(aes(colour="blue"))
+
+trees %>%
+ggplot(aes(x=type, y=height))+
+  geom_point(aes(), colour="blue")
+```
+Note: in this case you could also leave out the aes() within geom_point() and it would run the same. 
+
+For more of an explanation on why aes() works this way, you can check out this helpful thread on stackoverflow that helped me: https://stackoverflow.com/questions/41863049/when-does-the-argument-go-inside-or-outside-aes. Here's another really fantastic resource: https://drive.google.com/file/d/1Dvul1p6TYH6gWJzZRwpE0YX1dO0hDF-b/view.

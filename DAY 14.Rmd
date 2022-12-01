@@ -1,0 +1,34 @@
+---
+title: "The ggplot advent calendaR - DAY 14"
+output: html_notebook
+---
+
+On the fourteenth day of Christmas...
+
+... we worked with colour scales!
+
+We've been seeing the same three colours over and over: red, green, blue. But what if we want to specify the colours when we choose colour or fill by type? This is where colour scales come in.
+
+We can choose a different colour palettes by installing colour palette packages and loading them.
+
+Here is a good resource, RColorBrewer.
+```{r}
+install.packages("RColorBrewer")
+library(RColorBrewer)
+```
+
+Let's choose a palette from RColorBrewer. You can find the names and palettes here: https://r-graph-gallery.com/38-rcolorbrewers-palettes.html or you can run this code to display them in R:
+```{r}
+RColorBrewer::display.brewer.all()
+```
+
+Here we'll create our boxplots again, so we will want to change the "fill" rather than the "colour", therefore we use scale_fill_brewer(). We're going to try the Dark2 palette:
+```{r}
+trees %>%
+ggplot(aes(x=type, y=height))+
+  geom_boxplot(aes(fill=type), colour="black")+
+  theme_classic()+
+  scale_fill_brewer(palette="Dark2")
+```
+
+What if you like the palette but don't like how ggplot applied the colours? Or maybe you can't find the perfect palette and want to create your own? We can manually assign colours too... but we'll wait until tomorrow for that one!

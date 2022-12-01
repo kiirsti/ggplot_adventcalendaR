@@ -1,0 +1,72 @@
+---
+title: "The ggplot advent calendaR - DAY 19"
+output: html_notebook
+---
+
+On the nineteenth day of Christmas...
+
+... we made position adjustments!
+
+Position adjustments are handy if you have overlapping geoms or data. You can override the default using the position argument in the geom_() functiions.
+
+Instead of boxplots, let's look at the raw data points using a different type of geom later, geom_jitter().
+```{r}
+trees %>%
+ggplot(aes(x=type, y=height))+
+  geom_jitter(aes(colour=type))+
+  theme_classic()+
+  scale_colour_manual(values=xmas)
+
+```
+
+Position adjustments come in handy with point data like this, more so when we're working with large datasets that have many points. Let's adjust the position of our jittered points.
+```{r}
+trees %>%
+ggplot(aes(x=type, y=height))+
+  geom_jitter(aes(colour=type), position = position_jitter(width = 0.05, height = 0.5))+
+  theme_classic()+
+  scale_colour_manual(values=xmas)
+```
+
+Let's look at another example. We'll bring back our scatterplot of sleigh data but I'm going to cut it down a bit to make it a easier to work with. I'll do this using another tidyverse package, dplyr.
+
+```{r}
+sleighs.transposed <-t(sleighs)
+sleighs.subset <-slice(sleighs, 4:12)
+```
+
+```{r}
+sleighs.subset %>%
+  ggplot(aes(x=deerpower, y=km_per_carrot))+
+  geom_point(aes(fill=name), shape=21, size=3)+
+  theme_classic()
+```
+
+That legend is fine, but let's get rid of it and instead label each point.Do you remember how to remove the legend?
+```{r}
+sleighs.subset %>%
+  ggplot(aes(x=deerpower, y=km_per_carrot))+
+  geom_point(aes(fill=name), shape=21, size=3, show.legend = F)+
+  geom_text(aes(label=name))+
+  theme_classic()
+```
+
+Well this might work better, but the labels are all overlapping and difficult to read. This is where position_nudge() comes in handy!
+
+```{r}
+sleighs.subset %>%
+  ggplot(aes(x=deerpower, y=km_per_carrot))+
+  geom_point(aes(fill=name), shape=21, size=3, show.legend = F)+
+  geom_text(aes(label=name), position = position_nudge(x=10, y=0.4))+
+  theme_classic()
+```
+
+And because our Stealth Sleigh is off the plot, let's fix that using what we learned on Day 13 about limits.
+```{r}
+sleighs.subset %>%
+  ggplot(aes(x=deerpower, y=km_per_carrot))+
+  geom_point(aes(fill=name), shape=21, size=3, show.legend = F)+
+  geom_text(aes(label=name), position = position_nudge(x=10, y=0.4))+
+  theme_classic()+
+  scale_x_continuous(limits=c(0,300))
+```

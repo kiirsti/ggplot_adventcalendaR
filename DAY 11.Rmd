@@ -1,0 +1,37 @@
+---
+title: "The ggplot advent calendaR - DAY 11"
+output: html_notebook
+---
+
+On the eleventh day of Christmas...
+
+...we introduced themes!
+
+We can use themes to make finer adjustments to non-data parts of our graphic. While labs() is fine for adding labels and a title, themes allow us to choose the size, font, colour, position, etc. of that text. Today I'm going to introduce you to some complete themes.
+
+Let's go back to our nice, clean-looking boxplots:
+```{r}
+trees %>%
+ggplot(aes(x=type, y=height))+
+  geom_boxplot(aes(fill=type), colour="black")
+```
+
+While the grey backgronud is the default in ggplot, it's certainly not a requirement. That's often one of the first things I change!
+
+```{r}
+trees %>%
+ggplot(aes(x=type, y=height))+
+  geom_boxplot(aes(fill=type), colour="black")+
+  theme_bw()
+```
+
+Theme_bw() is a complete theme, meaning that it's a theme that can be applied as a layer that changes the look of your overall plot. Theme_gre() is the default. You can also try other complete themes, such as theme_dark(), theme_light(), theme_classic(), theme_void() and more.
+
+```{r}
+trees %>%
+ggplot(aes(x=type, y=height))+
+  geom_boxplot(aes(fill=type), colour="black")+
+  theme_classic()
+```
+
+Personally, I like this one best!

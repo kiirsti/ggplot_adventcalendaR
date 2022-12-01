@@ -1,0 +1,36 @@
+---
+title: "The ggplot advent calendaR - DAY 15"
+output: html_notebook
+---
+
+On the fifteenth day of Christmas...
+
+...we learned how to assign colours manually!
+
+For this we use scale_color_manual() and/or scale_fill_manual(). For the boxplots, we will use scale_fill_manual().
+```{r}
+trees %>%
+ggplot(aes(x=type, y=height))+
+  geom_boxplot(aes(fill=type), colour="black")+
+  theme_classic()+
+  scale_fill_manual(values=c("darkgreen", "firebrick2", "mediumseagreen"))
+```
+
+The colours will be assigned in the order we gave them, so you can also repeat a colour (e.g., green, red, green) and it will be assigned in that order. Instead of colour names, you can also use the color codes (e.g., #E69F00).
+
+We'll be using these colours again and again, so why don't we save them as a vector?
+```{r}
+xmas <-c("darkgreen", "firebrick2", "mediumseagreen")
+```
+
+
+You can also specific the colours that will be assigned to each level of your variable:
+```{r}
+trees %>%
+ggplot(aes(x=type, y=height))+
+  geom_boxplot(aes(fill=type), colour="black")+
+  theme_classic()+
+  scale_fill_manual(values=xmas)
+```
+
+Christmas colours aren't necessarily colour-blind friendly. There are lots of fantastic resources when considering colour-blind friendly palettes for your graphics. Here's one: https://colorbrewer2.org/#type=sequential&scheme=YlGnBu&n=9

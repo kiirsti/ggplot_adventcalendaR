@@ -1,0 +1,51 @@
+---
+title: "The ggplot advent calendaR - DAY 17"
+output: html_notebook
+---
+
+On the seventeenth day of Christmas...
+
+...we edited our legend!
+
+Want to move your legend? Change the shape, style, size? Get rid of it completely?
+
+Let's go back to our boxplots. We can remove the legend using "show.legend = FALSE". We put this in the geom_boxplot() since the legend is linked to that layer.
+```{r}
+trees %>%
+ggplot(aes(x=type, y=height))+
+  geom_boxplot(aes(fill=type), colour="black", show.legend = FALSE)+
+  theme_classic()+
+  scale_fill_manual(values=xmas)
+```
+
+Another option is to use guides(). In this case we use fill="none" but if we were working with colour instead of fill, we would type colour="none". This way of removing the legend is handy in instances when you have multiple geoms. We can add one little line of code to remove the legend, instead of typing "show.legend=F" into each geom layer.
+```{r}
+trees %>%
+ggplot(aes(x=type, y=height))+
+  geom_boxplot(aes(fill=type), colour="black")+
+  theme_classic()+
+  scale_fill_manual(values=xmas)+
+  guides(fill="none")
+```
+
+We can also change the text of the legend. When we changed the x-axis labels, the legend didn't change with it. Let's fix that now. We do this by adding the same "labels = c(..." in scale_fill_manual() as well as scale_x_discrete(). Why? Because scale_fill_manual() refers to the colours of your data, and the legend represents that (they are directly linked). scale_x_discrete() is focused solely on the x-axis.
+```{r}
+trees %>%
+ggplot(aes(x=type, y=height))+
+  geom_boxplot(aes(fill=type), colour="black")+
+  theme_classic()+
+  scale_fill_manual(name="Tree Type", values=xmas, labels=c("Balsam Fir", "Jack Pine", "Blue Spruce"))+
+    scale_x_discrete(labels=c("Balsam Fir", "Jack Pine", "Blue Spruce"))
+```
+
+*REFRESHER* What if we want to change the position of the legend or the colour of the text?? Remember back to when we talked about themes? If we want to make changes to anything that's not related to the data (i.e., it could be a plot of anything or one without any data in it), we use THEMES.
+
+```{r}
+trees %>%
+ggplot(aes(x=type, y=height))+
+  geom_boxplot(aes(fill=type), colour="black")+
+  theme_classic()+
+  scale_fill_manual(name="Tree Type", values=xmas, labels=c("Balsam Fir", "Jack Pine", "Blue Spruce"))+
+    scale_x_discrete(labels=c("Balsam Fir", "Jack Pine", "Blue Spruce"))+
+  theme(legend.title = element_text(colour = "goldenrod3", size =14, face="bold"), legend.position="top")
+```

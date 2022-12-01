@@ -1,0 +1,30 @@
+---
+title: "The ggplot advent calendaR - DAY 5"
+output: html_notebook
+---
+
+On the fifth day of Christmas...
+
+...we started working with the aesthetics of our graphic!
+
+Aesthetic mapping describes the visual properties of the graphic. We can change the aesthetics of ggplot() or each layer we add to it. We use aes() and then customize our graphic to appear how we'd like it. On Day 3, we created some pretty boring graphs: white boxes or violins, black dots, and grey backgrounds. While this is fine for exploring data, it's perhaps not how we want our finished product to look!
+
+Today, we're going to work on changing the colours of our data. Let's start with the scatterplot, i.e., the geom_point() graphic.
+
+To change the aesthetics of the geom_point() dots, we add "aes()" within the parentheses of geom_point(). You may have noticed that we already used "aes()" when we told ggplot what we wanted our X and Y axes to be. Now we will also tell ggplot to assign different colours to our points by tree type. In this case, we are not choosing the colours.
+
+```{r}
+trees %>%
+ggplot(aes(x=type, y=height, colour=type))+
+  geom_point()
+```
+Now instead of changing the aesthetics of the ggplot() layer, let's instead change the aesthetics of the geom_point() layer.
+```{r}
+trees %>%
+ggplot()+
+  geom_point(aes(x=type, y=height, colour=type))
+```
+
+Looks the same right? So what's the difference? Right now, nothing appears different, but later it may impact how your graphic looks. When you change the aesthetics of the ggplot() layer, those aesthetics will be applied as the default to all of your subsequent layers. If you change the aesthetics of an individual layer, it will only be applied to that layer and it will override the default.
+
+What if we want to use all the same colour for our points? Find out tomorrow!

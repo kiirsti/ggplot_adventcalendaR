@@ -1,0 +1,47 @@
+---
+title: "The ggplot advent calendaR - DAY 16"
+output: html_notebook
+---
+
+On the sixteenth day of Christmas...
+
+...we worked with a different type of plot and added multiple geoms to one plot!
+
+We haven't even touched the sleigh dataset! Let's create a graphic with that so we can work with a different type of plot.
+```{r}
+sleighs %>%
+  ggplot(aes(x=deerpower, y=km_per_carrot))+
+  geom_point(aes(fill=name), shape=21, size=3)+
+  theme_classic()
+```
+
+Here we've told ggplot to colour each sleigh type a different colour (some are nearly impossible to differentiate but we won't worry about that today).
+
+Maybe we want to add a trendline to our plot. We can do this by adding a geom_smooth() layer:
+```{r}
+sleighs %>%
+  ggplot(aes(x=deerpower, y=km_per_carrot))+
+  geom_point(aes(fill=name), shape=21, size=3)+
+  geom_smooth()+
+  theme_classic()
+```
+
+And maybe we want to customize that line. The default is a blue line with grey background. We can change that to a black line using "colour =" and we can change the transparency of the error using "alpha =". We can also change the method of how the line is calculated using "method ="
+```{r}
+sleighs %>%
+  ggplot(aes(x=deerpower, y=km_per_carrot))+
+  geom_point(aes(fill=name), shape=21, size=3)+
+  geom_smooth(colour="black", alpha=0.2, method=lm)+
+  theme_classic()
+```
+
+Alpha can also be helpful when you have overlapping points.
+```{r}
+sleighs %>%
+  ggplot(aes(x=deerpower, y=km_per_carrot))+
+  geom_point(aes(fill=name), shape=21, size=3, alpha=0.5)+
+  geom_smooth(colour="black", alpha=0.2)+
+  theme_classic()
+```
+
+More detailed and additional information on colour scales can be found here: https://ggplot2-book.org/scale-colour.html

@@ -1,0 +1,71 @@
+---
+title: "The ggplot advent calendaR - DAY 23"
+output: html_notebook
+---
+
+On the twenty-third day of Christmas...
+
+...we introduced cowplot!!
+
+"Cowplot????????:
+
+Yes. Cowplot.
+
+Cowplot is an add-on to ggplot and allows us to combine several plots into one.
+
+"How is that different from faceting??"
+
+Cowplot allows you to combine plots of different types into one image!
+
+First, let's install and load the cowplot package.
+```{r}
+install.packages("cowplot")
+library(cowplot)
+```
+
+Now let's make a few graphs.
+```{r}
+sleigh.plot1 <-sleighs.subset %>%
+  ggplot(aes(x=km_per_carrot, y=bag_space))+
+  geom_point(colour="darkgreen")+
+  theme_classic()
+
+sleigh.plot2 <-sleighs.subset %>%
+  ggplot(aes(x=bells))+
+  geom_bar(fill="firebrick2")+
+  theme_classic()
+
+sleigh.plot3 <-sleighs.subset %>%
+  ggplot(aes(x=km_per_carrot, y=deerpower))+
+  geom_quantile(colour="gold3")+
+  theme_classic()
+
+tree.plot1<-trees %>%
+  ggplot(aes(x=type, y=height))+
+  geom_boxplot(fill="seagreen")+
+  theme_classic()
+
+tree.plot2 <-trees %>%
+  ggplot(aes(x=xmas.magic))+
+  geom_dotplot(fill="tomato3")+
+  theme_classic()
+```
+
+Now we can use cowplot to create one image with multiple plots.
+```{r}
+plot_grid(tree.plot1, tree.plot2, nrow=1, labels = c("A", "B"))
+```
+
+Let's combine all 5 plots into one image.
+```{r}
+plot_grid(tree.plot1, tree.plot2, sleigh.plot1, sleigh.plot2, sleigh.plot3, nrow = 2)
+```
+
+This looks okay, but maybe we wanted the tree plots to be on the top and the sleigh plots to be on the bottom. We can do that but specifying which ones go in the top row and which on the bottom.
+```{r}
+first_row <-plot_grid(plot_grid(tree.plot1, tree.plot2, nrow=1, labels = c("A", "B")))
+second_row <-plot_grid(sleigh.plot1, sleigh.plot2, sleigh.plot3, nrow=1, labels = c("A", "B", "C"))
+
+plot_grid(first_row, second_row, ncol=1, nrow=2)
+```
+Want a review? Try changing your axis labels to something cleaner and more informative (pretend you were going to publish this image in a paper!). Hint: you will need to edit the labels in your original plots, not in the plot_grid(). If you can't remember how, check out day 10.

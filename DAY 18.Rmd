@@ -1,0 +1,92 @@
+---
+title: "The ggplot advent calendaR - DAY 18"
+output: html_notebook
+---
+
+On the eighteenth day of ChRistmas...
+
+... we learned about guides!
+
+Yesterday, we made some edits to our legend using scales and themes. Today, we will introduce one more way to exercise more fine control over your graphics: guides() and guide_ functions! Guides, like our legends and axes, help us or our audience interpret our plots. We can use guides() or the guide_ argument _*() functions to make additional changes to our legends and axes. Here's a great explanation of scales and guides from Ch.15 of Wickham, Navarro and Pederson's book, which I highly recommend you check out: https://ggplot2-book.org/index.html
+
+"Formally, each scale is a function from a region in data space (the domain of the scale) to a region in aesthetic space (the range of the scale). The axis or legend is the inverse function, known as the guide: it allows you to convert visual properties back to data. You might find it surprising that axes and legends are the same type of thing, but while they look very different they have the same purpose: to allow you to read observations from the plot and map them back to their original values."
+
+Let's look at some examples. Let's try a new graphic with our data, and we'll use a gradient colour scale to colour our points based on the amount of "Christmas magic" in our trees:
+```{r}
+trees %>%
+ggplot(aes(x=needle.drop, y=height))+
+  geom_point(aes(colour=xmas.magic), size=2)+
+  theme_classic()+
+  scale_colour_continuous(low="red", high="mediumseagreen")
+```
+
+Before we get back to guides, let's quikcly chat about the gradient scale. There are many, many ways you can edit the colours, but in this case we told ggplot that we wanted to change the colour of our points with a gradient "scale_colour_continuous()" and then we set the high and low colours. We could have also set the middle colour or chosen an existing gradient. Learn more here: https://ggplot2-book.org/scale-colour.html
+
+Back to guides! (colours are just so distracting!!)
+
+We can make additional edits to our legends using "+ guides()" or by specifying the "guide = " argument within our scale layer (scale_colour_continuous(), which corresponds with our legend).
+```{r}
+trees %>%
+ggplot(aes(x=needle.drop, y=height))+
+  geom_point(aes(colour=xmas.magic), size=2)+
+  theme_classic()+
+  scale_colour_continuous(low="red", high="mediumseagreen")+
+  guides(colour=guide_colourbar(reverse=TRUE, direction = "horizontal", barheight=unit(2, "cm")))
+```
+
+Here we've flipped our bar horizontally and increased the size of the legend. No changes have been made to the rest of our graphic. We can achieve the exact same output by adding "guide = " to our scale_colour_continuous() layer.
+```{r}
+trees %>%
+ggplot(aes(x=needle.drop, y=height))+
+  geom_point(aes(colour=xmas.magic), size=2)+
+  theme_classic()+
+  scale_colour_continuous(low="red", high="mediumseagreen", guide = guide_colourbar(reverse=TRUE, direction = "horizontal", barheight=unit(2, "cm")))
+```
+
+Here are a couple more ways we can use guides to edit our legend. Let's change up our plot a bit.
+```{r}
+trees %>%
+ggplot(aes(x=xmas.magic, y=needle.drop))+
+  geom_point(aes(colour=type), size=2.5)+
+  theme_classic()+
+  scale_colour_manual(values=xmas)
+```
+
+There's a bit of overlap in our points, so let's adjust the transparency using alpha:
+```{r}
+trees %>%
+ggplot(aes(x=xmas.magic, y=needle.drop))+
+  geom_point(aes(colour=type), size=2.5, alpha=0.7)+
+  theme_classic()+
+  scale_colour_manual(values=xmas)
+```
+But maybe we don't want our legend to also have transparent points, so we can use a guide to override this aesthetic change.
+
+```{r}
+trees %>%
+ggplot(aes(x=xmas.magic, y=needle.drop))+
+  geom_point(aes(colour=type), size=2.5, alpha=0.7)+
+  theme_classic()+
+  scale_colour_manual(values=xmas)+
+  guides(colour=guide_legend(override.aes=list(alpha=1)))
+```
+
+Finally, let's use guides to change the aesthetics of our axes. We will go back to our sleighs dataset for this one.
+```{r}
+sleighs %>%
+ggplot(aes(x=name, y=deerpower))+
+  geom_point()+
+  labs(x="Sleighs")+
+  theme_classic()
+```
+
+As you can see, the names of the sleighs are impossible to read. Let's flip the labels at the bottom so that they run vertically instead.
+```{r}
+sleighs %>%
+ggplot(aes(x=name, y=deerpower))+
+  geom_point()+
+  theme_classic()+
+  labs(x="Sleighs")+
+  guides(x=guide_axis(angle=90))
+```
+Much better! Hopefully now you have an idea of some of the ways you can edit your guides (legends, axes) using guides() and guide =.

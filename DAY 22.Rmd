@@ -1,0 +1,65 @@
+---
+title: "The ggplot advent calendaR - DAY 22"
+output: html_notebook
+---
+
+On the twenty-second day of Christmas...
+
+...we annotated our plots!
+
+Sometimes we may want to add text to our plots, not just titles and labels, but annotations on the data or plot area. We can do this using geom_text(). We did this on Day 19 when we talked about position adjustments. Now we're going to discuss annotations in more detail. Let's bring back that graphic, but with some added text and labels.
+```{r}
+sleighs.subset %>%
+  ggplot(aes(x=deerpower, y=km_per_carrot))+
+  geom_point(aes(fill=name), shape=21, size=3, show.legend = F)+
+  geom_text(aes(label=name), position = position_nudge(x=10, y=0.4))+
+  theme_classic()+
+  scale_x_continuous(limits=c(0,300))+
+  labs(x="Deerpower", y="Kilometers per carrot", title="Top options for Santa's sleigh upgrade", subtitle= "Source: The Ultimate Sleigh Catalogue 2022")
+```
+
+Let's say that the elf in charge wants to send this to Santa but wants to mark, on the plot, which sleigh is her top choice for Santa. We can do this using the annotate() function. We first need to set up our x & y ranges and our caption text.
+```{r}
+yrng <- range(sleighs.subset$km_per_carrot)
+xrng <- range(sleighs.subset$deerpower)
+caption <- paste(strwrap("Sprinkle's top choice: Winter Express"))
+```
+
+Then we can make our plot:
+```{r}
+sleighs.subset %>%
+  ggplot(aes(x=deerpower, y=km_per_carrot))+
+  geom_point(aes(fill=name), shape=21, size=3, show.legend = F)+
+  geom_text(aes(label=name), position = position_nudge(x=10, y=0.4))+
+  theme_classic()+
+  scale_x_continuous(limits=c(0,300))+
+  annotate(geom = "text", x = xrng[1], y = yrng[2], 
+    label = caption, hjust = -0.4, vjust = 1, size = 5, fontface="bold")
+```
+
+Or may we want to annotate the points directly to show Santa which ones Sprinkle chose as her top recommendations.
+```{r}
+sleighs.subset %>%
+  ggplot(aes(x=deerpower, y=km_per_carrot))+
+  geom_point(aes(fill=name), shape=21, size=3, show.legend = F)+
+  geom_text(aes(label=name), position = position_nudge(x=10, y=0.4))+
+  theme_classic()+
+  scale_x_continuous(limits=c(0,300))+
+  annotate("text", x=c(55), y=c(21.6), label=c("Top choice!"), size = 7, fontface="bold")
+```
+
+Hopefully it's clear which point we're referring to here ("Winter Express") but in case it's not, we can also highlight it by adding another geom_point() layer. Note that we add additional geom_point() layers but they must go before our original geom_point layer or the orange dots will appear on top of the coloured points (which in this case would also be fine!).
+```{r}
+sleighs.subset %>%
+  ggplot(aes(x=deerpower, y=km_per_carrot))+
+   geom_point(data=filter(sleighs.subset, name =="Winter Express"), colour="orange", size=6)+
+  geom_point(aes(fill=name), shape=21, size=3, show.legend = F)+
+  geom_text(aes(label=name), position = position_nudge(x=10, y=0.4))+
+  theme_classic()+
+  scale_x_continuous(limits=c(0,300))+
+annotate("text", x=c(55), y=c(21.6), label=c("Top choice!"), size = 7, fontface="bold")
+```
+
+There's much more you can do with annotations. As usual, I'll direct you to ggplot2: Elegant Graphics for Data Analysis: https://ggplot2-book.org/annotations.html#direct-labelling
+
+Want a review? Try changing the colour palette of the points in this plot.

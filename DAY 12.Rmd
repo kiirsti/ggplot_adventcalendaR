@@ -1,0 +1,26 @@
+---
+title: "The ggplot advent calendaR - DAY 12"
+output: html_notebook
+---
+
+On the twelfth day of Christmas...
+
+... we worked with theme() and more control with non-data parts of our graphics!
+
+Here, I'm keeping theme_classic() and building on top of that.
+```{r}
+trees %>%
+ggplot(aes(x=type, y=height))+
+  geom_boxplot(aes(fill=type), colour="black")+
+  labs(title="Christmas Trees", x=NULL, y="Tree height")+
+  theme_classic()+
+  theme(plot.title = element_text(face = "bold", size = 16, colour = "gold"),
+    legend.background = element_rect(fill = "white", size = 4, colour = "red"),
+    legend.justification = c(0, 1),
+     axis.ticks = element_line(),
+    axis.title.y = element_text(colour="darkgreen"),
+    axis.text.x = element_text(size=12),
+    panel.grid.major = element_line())
+```
+
+In this case, I wanted to show you how you can keep the grid lines, while changing to theme_classic(). We've also changed the style and size of the title, moved the legend and changed the colours, changed the colour of the y axis label, and changed the size of the x axis tick labels. This is by no means a pretty graphic, but hopefully it gives you an idea of different ways we can change features of our graphic. There are many more changes you could make and lots of great online tutorials that cover this in more detail.

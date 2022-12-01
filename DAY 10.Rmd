@@ -1,0 +1,28 @@
+---
+title: "The ggplot advent calendaR - DAY 10"
+output: html_notebook
+---
+
+On the tenth day of Christmas...
+
+...we edited the text of our graphics.
+
+Editing the look of your text and fonts in ggplot is easy, with lots of options to make it look exactly how you want it. Here's our graphic from yesterday.
+```{r}
+trees %>%
+ggplot(aes(x=height, y=xmas.magic, group=type))+
+  geom_line(aes(colour=type), linetype="dashed")+
+  geom_point(aes(colour=type), size = 3, shape = 8)
+```
+
+What kind of things might we want to change? Maybe we want a title and more informative and cleaner-looking axis labels. To do this, we need to add new layer, labs() for labels. You can also use xlab(), ylab(), and ggtitle() to add them individually.
+
+```{r}
+trees %>%
+ggplot(aes(x=height, y=xmas.magic, group=type))+
+  geom_line(aes(colour=type), linetype="dashed")+
+  geom_point(aes(colour=type), size = 3, shape = 8)+
+    labs(title="Christmas Trees", x="Tree height", y="Christmas magic")
+```
+
+What if we want to make more aesthetic changes to our fonts and labels? We will need to use themes!

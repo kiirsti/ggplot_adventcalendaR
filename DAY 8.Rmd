@@ -1,0 +1,38 @@
+---
+title: "The ggplot advent calendaR - DAY 8"
+output: html_notebook
+---
+
+On the eight day of Christmas...
+
+...we finally took a break from talking about colours!
+
+Colour is a big one, but let's work with some other changes to the aesthetics of our graphic. Let's bring back the geom_point() graphic. I'm using the theme of Christmas, but of course, December has many, many holidays. Hanukkah starts on Dec. 17 this year, so let's make a Hanukkah-inspired graphic and look at different ways to change the aesthetics of our graphs.
+
+
+```{r}
+trees %>%
+ggplot(aes(x=type, y=height))+
+  geom_point(aes(), shape = 11, colour="blue", size = 6, stroke=2)
+```
+
+Here we've specified the shape, the colour, the size, and the stroke (line thickness) of the points. There are many changes we can make to aesthetics, these are just a few examples. Let's take a look at a line graph and how we can customize that.
+
+We haven't made a line graph yet, so let's create a simple one first, before we customize it.
+
+```{r}
+trees %>%
+ggplot(aes(x=height, y=xmas.magic, group=type))+
+  geom_line()
+```
+
+Here we've specified that we want each line to represent a different tree type by using "group=". This goes inside aes() because it is being applied to the data (i.e., it can't be done without this specific dataset)
+
+Now let's spruce it up. ("spruce" it up... because they're trees... hahahaha. A little Christmas cheer for you).
+```{r}
+trees %>%
+ggplot(aes(x=height, y=xmas.magic, group=type))+
+  geom_line(aes(colour=type), linetype="dashed")
+```
+
+What if we want to show the points AND the lines? Tomorrow we will add another layer to our graphic.

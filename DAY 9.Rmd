@@ -1,0 +1,33 @@
+---
+title: "The ggplot advent calendaR - DAY 9"
+output: html_notebook
+---
+
+On the ninth day of Christmas...
+
+... we added another geom_ layer to our graphic.
+
+Here's our geom_lin() graphic from yesterday:
+```{r}
+trees %>%
+ggplot(aes(x=height, y=xmas.magic, group=type))+
+  geom_line(aes(colour=type), linetype="dashed")
+```
+
+Now let's add points to it as well. It's as simple as + geom_point()!
+```{r}
+trees %>%
+ggplot(aes(x=height, y=xmas.magic, group=type))+
+  geom_line(aes(colour=type), linetype="dashed")+
+  geom_point()
+```
+
+And if you want to change the aesthetics of those points, where do you do it? Within geom_point()!
+```{r}
+trees %>%
+ggplot(aes(x=height, y=xmas.magic, group=type))+
+  geom_line(aes(colour=type), linetype="dashed")+
+  geom_point(aes(colour=type), size = 3, shape = 8)
+```
+
+They kind of look like Christmas lights :)

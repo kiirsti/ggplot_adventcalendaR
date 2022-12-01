@@ -1,0 +1,27 @@
+---
+title: "The ggplot advent calendaR - DAY 1"
+output: html_notebook
+---
+
+On the first day of Christmas... we're jumping into the tidyverse!
+
+ggplot is part of the tidyverse, a group of packages that also includes dplyr, readr, and other very helpful packages that you should have! You can install and load ggplot separately, but… why? (:
+
+The package we're using is actually called ggplot2. Super-duper fun fact: "ggplot2 is called ggplot2 because once upon a time there was just a library ggplot. However, the developer noticed that it used an inefficient set of functions. In order for not to break the API, the authors introduced a successor package ggplot2. However, the central function in this package is still called ggplot(), not ggplot2()!" (wasn't that fun? Source: Freeman & Ross, 2019).
+
+Install and load tidyverse:
+```{r}
+install.packages("tidyverse")
+library(tidyverse)
+```
+
+Let's also load our data using another tidyverse package, readr, and then view the data. We will be working with two datasets throughout this tutorial:
+```{r}
+sleighs <-read_csv("https://raw.githubusercontent.com/kiirsti/ggplot_adventcalendaR/main/sleigh.data.csv")
+sleighs #if you highlight or retype and run the name "sleighs" it will show you a sample of the data
+
+trees <-read_csv("https://raw.githubusercontent.com/kiirsti/ggplot_adventcalendaR/main/xmas.trees.csv")
+trees
+```
+
+Using readr and read_csv(), instead of read.csv() from base R, loads our data in as tibbles. Why use tibbles over traditional dataframes? Three reasons: (1) the input types aren't automatically changed when you read in the data, (2) you can keep lists as columns, and (3) you can use non-standard variable names (e.g., starting with a number, as in "1st_place"). Thank you to my friend Pat for this explanation!

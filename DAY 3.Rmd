@@ -1,0 +1,42 @@
+---
+title: "The ggplot advent calendaR - DAY 3"
+output: html_notebook
+---
+
+On the third day of Christmas...
+
+...we added data to our graphic and explored geom layers!
+
+Geoms, or geometric objects, are graphical representations of the data. There are many many types of geoms (here's a long list of examples: https://ggplot2.tidyverse.org/reference/#geoms). Let's try a few.
+
+Geom layers start with "geom_" and are followed by the type of geometric object, e.g., "geom_point" or "geom_line". Because we're adding a new layer onto our graphic, we use a + after our first line of code. To keep things tidy and easy to read, I usually start my new layer on a new line.
+
+```{r}
+ggplot(trees, aes(x=type, y=height))+
+  geom_point()
+```
+
+Since we are working with categorical data (types of trees), the points all fall on three lines. Let's change our x and y axes before moving on to a different type of geom.
+
+```{r}
+ggplot(trees, aes(x=xmas.magic, y=height))+
+  geom_point()
+```
+
+Now we're comparing two continuous variables (xmas magic and tree height) so the points are scattered across our graphic.
+
+Let's look at some different geom types. We'll go back to type vs. height for this one.
+
+```{r}
+ggplot(trees, aes(x=type, y=height))+
+  geom_boxplot()
+```
+
+When creating graphics, always consider the type of data you're working with (e.g., continuous vs. discrete). The type of data you're working with should determine the type of geom you choose. Some geoms won't run properly if the type of data you're inputting doesn't work with those data types.
+
+One more example of a geom layer using the trees data.
+
+```{r}
+ggplot(trees, aes(x=type, y=height))+
+  geom_violin()
+```

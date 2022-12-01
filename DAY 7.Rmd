@@ -1,0 +1,41 @@
+---
+title: "The ggplot advent calendaR - DAY 7"
+output: html_notebook
+---
+
+On the seventh day of Christmas...
+
+...we changed the colours of boxplots!
+
+Try running the same code from yesterday but on a geom_boxplot() graphic.
+```{r}
+trees %>%
+ggplot(aes(x=type, y=height))+
+  geom_boxplot(aes(), colour="blue")
+```
+
+Hmm... okay. But what if we wanted the inside of the boxes to be coloured, not the outline?
+
+Instead of "colour =" we use "fill =" instead.
+```{r}
+trees %>%
+ggplot(aes(x=type, y=height))+
+  geom_boxplot(aes(), fill="blue")
+```
+
+This works for points too. The default for geom_point() are solid points, but you can change these to points with different outline and fill colours. 
+```{r}
+trees %>%
+ggplot(aes(x=type, y=height))+
+  geom_point(aes(), shape = 21, fill="green4", colour="red")
+```
+
+We can also change the colours of our boxplots by tree type, as we did with the points on Day 5. Remember from yesterday that because we want to change the colours by a variable (i.e., multiple colours determind by the levels of the variable) rather than change using a constant value (i.e., single colour), we put this INSIDE aes().
+
+```{r}
+trees %>%
+ggplot(aes(x=type, y=height))+
+  geom_boxplot(aes(fill=type), colour="black")
+```
+
+Now that we're playing around with colours. It's time I introduce you to a good colour resource: http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf. There are many great online resources about colours, but I like this one made by Dr. Ying Wei.

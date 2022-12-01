@@ -1,0 +1,76 @@
+---
+title: "The ggplot advent calendaR - DAY 21"
+output: html_notebook
+---
+
+On the twenty-first day of Christmas...
+
+...we learned about faceting!
+
+Faceting produces smaller graphs that can be displayed alongside one another. We use facet_wrap() and facet_grid() for this. 
+
+Let's start with facet_wrap(). Remember our line graph that looks a bit like Christmas lights? Let's use that. Here it is, as a reminder:
+```{r}
+trees %>%
+ggplot(aes(x=height, y=xmas.magic, group=type))+
+  geom_line(aes(colour=type), linetype="dashed")+
+  geom_point(aes(colour=type), size = 3, shape = 8)
+```
+
+Now, instead of having all three lines on one plot, let's create three smaller plots and display them together. 
+```{r}
+trees %>%
+ggplot(aes(x=height, y=xmas.magic, group=type))+
+  geom_line(linetype="dashed")+
+  geom_point(size = 3, shape = 8)+
+  facet_wrap(~type, ncol=3)
+```
+
+Let's do the same thing but using facet_grid(). The syntax is a little different, but we've produced the exact same set of plots. In our case, ".~type" puts the plots side by side.
+```{r}
+trees %>%
+ggplot(aes(x=height, y=xmas.magic, group=type))+
+ geom_line(linetype="dashed")+
+  geom_point(size = 3, shape = 8)+
+  facet_grid(.~type)
+```
+
+If we want to stack our plots instead, we change up the coding within facet_grid(). In our case, "type~." stacks the plots.
+```{r}
+trees %>%
+ggplot(aes(x=height, y=xmas.magic, group=type))+
+ geom_line(linetype="dashed")+
+  geom_point(size = 3, shape = 8)+
+  facet_grid(type~.)
+```
+
+Our datasets aren't really set up for this type of grid, but let's look at plots of reins by bells to show you how you could set up facet_grid() with multiple plots. A plot area is produced with two levels for reins and three levels for bells.
+```{r}
+sleighs.subset%>%
+  ggplot(aes(x=reins, y=bells))+
+  facet_grid(reins~bells)
+```
+
+You can also use "scales =" to adjust the scales of all or each of the plots. Let's go back to our first set of plots from today:
+```{r}
+trees %>%
+ggplot(aes(x=height, y=xmas.magic, group=type))+
+  geom_line(linetype="dashed")+
+  geom_point(size = 3, shape = 8)+
+  facet_wrap(~type, ncol=3)
+```
+
+To adjust the scales, we add "scales =" to facet_wrap().
+```{r}
+trees %>%
+ggplot(aes(x=height, y=xmas.magic, group=type))+
+  geom_line(linetype="dashed")+
+  geom_point(size = 3, shape = 8)+
+  facet_wrap(~type, ncol=3, scales = "free_y")
+```
+
+By choosing "free_y" we have changed the y scale from fixed to free but the x-axis remained the same. Take a look at how the y-axis scale is now different for each plot. Other options are "free_x", "fixed", or "free".
+
+There are lots more things you can do with facets. Check out Ch. 17 of "ggplot2:Elegant Graphics for Data Analysis" for more: https://ggplot2-book.org/facet.html
+
+Want a review? Try changing the style of the points and lines in these plots. Also, try removing the grey background!
