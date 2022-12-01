@@ -8,3 +8,5 @@ I know there are so so so many topics I did not cover in this calendaR. I wanted
 I'm not an expert and in fact I learned a lot of this stuff while creating the calendaR (one of the reasons I wanted to do it in the first place!). I also created this calendaR on a tight timeline (2 days before December 1st), so there are bound to be mistakes. Please let me know if you find anything that needs to be fixed or flagged!
 
 Finally, enjoy and happy holidays!
+
+P.S. I borrowed a lot of information and ideas from this source, so I want to highlight it again here: https://ggplot2-book.org/
