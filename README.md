@@ -1,5 +1,5 @@
 # ggplot_adventcalendaR
-<h1 style="color: #eb0e04A"> 25-day advent calendaR providing an introduction to ggplot2! </h1>
+<h1 style="color: #eb0e04A;"> 25-day advent calendaR providing an introduction to ggplot2! </h1>
 
 Here it is! A 25-day ggplot advent calendaR, a follow-up to the <a href="https://kiirstio.wixsite.com/kowen/post/the-25-days-of-christmas-an-r-advent-calendar" >R advent calendaR </a> that teaches the very basics in R.
 
