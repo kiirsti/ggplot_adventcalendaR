@@ -1,2 +1,10 @@
 # ggplot_adventcalendaR
 A 25-day advent calendaR providing an introduction to ggplot2!
+
+For this advent calendaR, I decided to do things a little differently. For one, I deposited everything to GitHub. This is much more efficient! I also used R Notebook files for each day. This does mean that you will have to use R Studio. I recently started using R Notebooks and I really like them, especially for something like this where I want to include a lot of notes along with the code. You can still run the code line by line in the chunks, but you can also click the play button on the right-hand side to run the whole chunk at once (this will come in handy on Day 25!).
+
+I know there are so so so many topics I did not cover in this calendaR. I wanted to give you a basic intro to ggplot. You may notice that I didn't cover anything related to maps or spatial R. Maybe in the future there will be a spatial R calendaR (:
+
+I'm not an expert and in fact I learned a lot of this stuff while creating the calendaR (one of the reasons I wanted to do it in the first place!). I also created this calendaR on a tight timeline (2 days before December 1st), so there are bound to be mistakes. Please let me know if you find anything that needs to be fixed or flagged!
+
+Finally, enjoy and happy holidays!
