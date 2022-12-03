@@ -19,3 +19,7 @@ P.S. I borrowed a lot of information and ideas from this source, so I want to hi
 *** TO GET STARTED ***
 
 Click on the green button that says "CODE" and select "Download zip". This will download all the files for you to get started! I'd like to give people a chance to do this as an advent calendaR with minimal temptation to "cheat". After Christmas, I will post the full R Notebook file that I used to create this which has all 25 days in one file.
+
+*** HAVING ISSUES?***
+
+On Day 25, if you get an error about "Trees.X" does not exist, change read.csv() to read_csv(). This should fix the error. Read.csv() is automatically loaded in base R using package "Utils". Read_csv() is from package "readr" which is part of the tidyverse. Read_csv() loads the data in as a tibble (a tidy dataframe). I have already changed this in the Day 25 file, so if you are just downloading the files now, you can ignore this message :)
