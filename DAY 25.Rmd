@@ -7,7 +7,7 @@ I hope you enjoyed this advent calendar. Similarly to the previous one, for day 
 
 First, load in this dataset, which is available through git hub.
 ```{r}
-ChristmasTree <- read.csv("https://raw.githubusercontent.com/t-redactyl/Blog-posts/master/Christmas%20tree%20base%20data.csv")
+ChristmasTree <- read_csv("https://raw.githubusercontent.com/t-redactyl/Blog-posts/master/Christmas%20tree%20base%20data.csv")
 ```
 
 ```{r}
