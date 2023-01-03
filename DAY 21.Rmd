@@ -20,28 +20,29 @@ ggplot(aes(x=height, y=xmas.magic, group=type))+
 Now, instead of having all three lines on one plot, let's create three smaller plots and display them together. 
 ```{r}
 trees %>%
-ggplot(aes(x=height, y=xmas.magic, group=type))+
+ggplot(aes(x=height, y=xmas.magic))+ #when facet is defined later, no need for groups anymore. this should make the code a bit more simple. Suggesing it for the rest of the lines
   geom_line(linetype="dashed")+
   geom_point(size = 3, shape = 8)+
-  facet_wrap(~type, ncol=3)
+  facet_wrap(~type) # I think you dont need to the ncol here, as it would just understand it from the "type" categories, which are 3. if more cats maybe setting ncols would be useful
 ```
 
 Let's do the same thing but using facet_grid(). The syntax is a little different, but we've produced the exact same set of plots. In our case, ".~type" puts the plots side by side.
 ```{r}
 trees %>%
-ggplot(aes(x=height, y=xmas.magic, group=type))+
+ggplot(aes(x=height, y=xmas.magic))+
  geom_line(linetype="dashed")+
   geom_point(size = 3, shape = 8)+
-  facet_grid(.~type)
+  facet_grid(.~type) # when looking into face_grid, I found this would also be a possibility and maybe more intuitive?
+  #  facet_grid(cols = vars(type)) # I actually just found that ggplot says on facet_grid" It is most useful when you have two discrete variables, and all combinations of the variables exist in the data. if you have only one variable with many levels, try facet_wrap()" so not sure if its the most adequate here. But, I guess it can be shown but maybe explained as well in the text
 ```
 
 If we want to stack our plots instead, we change up the coding within facet_grid(). In our case, "type~." stacks the plots.
 ```{r}
 trees %>%
-ggplot(aes(x=height, y=xmas.magic, group=type))+
+ggplot(aes(x=height, y=xmas.magic))+
  geom_line(linetype="dashed")+
   geom_point(size = 3, shape = 8)+
-  facet_grid(type~.)
+  facet_grid(rows = vars(type)) #just as I suggested above, using rows may be more intuitive than the other syntax, but you can ignore this!
 ```
 
 Our datasets aren't really set up for this type of grid, but let's look at plots of reins by bells to show you how you could set up facet_grid() with multiple plots. A plot area is produced with two levels for reins and three levels for bells.
@@ -54,7 +55,7 @@ sleighs.subset%>%
 You can also use "scales =" to adjust the scales of all or each of the plots. Let's go back to our first set of plots from today:
 ```{r}
 trees %>%
-ggplot(aes(x=height, y=xmas.magic, group=type))+
+ggplot(aes(x=height, y=xmas.magic))+
   geom_line(linetype="dashed")+
   geom_point(size = 3, shape = 8)+
   facet_wrap(~type, ncol=3)
@@ -63,10 +64,10 @@ ggplot(aes(x=height, y=xmas.magic, group=type))+
 To adjust the scales, we add "scales =" to facet_wrap().
 ```{r}
 trees %>%
-ggplot(aes(x=height, y=xmas.magic, group=type))+
+ggplot(aes(x=height, y=xmas.magic))+
   geom_line(linetype="dashed")+
   geom_point(size = 3, shape = 8)+
-  facet_wrap(~type, ncol=3, scales = "free_y")
+  facet_wrap(~type, scales = "free_y")
 ```
 
 By choosing "free_y" we have changed the y scale from fixed to free but the x-axis remained the same. Take a look at how the y-axis scale is now different for each plot. Other options are "free_x", "fixed", or "free".
