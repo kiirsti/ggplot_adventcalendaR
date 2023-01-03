@@ -10,40 +10,36 @@ On the twentieth day of Christmas...
 First, let's create a barplot since we haven't done that yet. We'll base it on our previous sleighs subset.
 ```{r}
 sleighs.subset %>%
-  ggplot(aes(x=bells, y=reins))+
-  geom_col()+
-  scale_x_discrete(limits=c(4, 6, 8))+
+  ggplot(aes(x=as.factor(bells)))+ # with reins as y variables, you are not displaying counts of sleighs 
+  geom_bar()+ # I think this is most adequate if  you just want to do counts of sleighs for each category of # of bells. 
+  #scale_x_discrete(limits=c(4, 6, 8))+ # the scale discrete is not needed if you made it a factor before 
   theme_classic()
 ```
 
 The sleighs come with 4, 6, or 8 bells. So here we're displaying the counts of sleighs in each category (# of bells). But maybe we want to see some additional information in our barplot, such as the number of reins on the sleigh. I've heard that Santa takes these things super seriously, so this is completely practical and reasonable plot. Note that we have to specify that reins is a categorical variable, not a continuous one, using as.character(). In this case, we can't have 3.5 reins.
 ```{r}
 sleighs.subset %>%
-  ggplot(aes(x=bells, y=reins, fill=as.character(reins)))+
+  ggplot(aes(x=as.factor(bells), fill=as.factor(reins)))+
   geom_col()+
-  scale_x_discrete(limits=c(4, 6, 8))+
-  theme_classic()+
-  scale_fill_manual(values=xmas)
+  theme_classic()#+
+  #scale_fill_manual(values=xmas) # I always got an error with this, also, there is no xmas variable in the subset data 
+  # I think this suggestions should follow from the previous chunk, and should achieve what you wanted, and I would follow with the rest of the chunks
 ```
 
 The default is a stacked barplot (position = "stack"), but there are other ways we could display this using position adjustments. This option shows it as a percent using position = "fill".
 ```{r}
 sleighs.subset %>%
-  ggplot(aes(x=bells, y=reins, fill=as.character(reins)))+
-  geom_col(position="fill")+
-  scale_x_discrete(limits=c(4, 6, 8))+
-  theme_classic()+
-  scale_fill_manual(values=xmas)
+  ggplot(aes(x=as.factor(bells), fill=as.factor(reins)))+
+  geom_bar(position="fill")+
+  theme_classic()
 ```
 
 We can also position them side by side using position = "dodge". Note that the red bar on the left and the green bar on the right are two bars side by side.
 ```{r}
 sleighs.subset %>%
-  ggplot(aes(x=bells, y=reins, fill=as.character(reins)))+
-  geom_col(position="dodge")+
-  scale_x_discrete(limits=c(4, 6, 8))+
-  theme_classic()+
-  scale_fill_manual(values=xmas)
+  ggplot(aes(x=as.factor(bells), fill=as.factor(reins)))+
+  geom_bar(position="dodge")+
+  theme_classic()
 ```
 
 Want a review? Try changing the name of your legend.
