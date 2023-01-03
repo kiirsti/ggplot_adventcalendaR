@@ -15,7 +15,7 @@ ggplot(aes(x=type, y=height))+
   labs(title="Christmas Trees", x=NULL, y="Tree height")+
   theme_classic()+
   theme(plot.title = element_text(face = "bold", size = 16, colour = "gold"),
-    legend.background = element_rect(fill = "white", size = 4, colour = "red"),
+    legend.background = element_rect(fill = "white", linewidth = 4, colour = "red"),
     legend.justification = c(0, 1),
      axis.ticks = element_line(),
     axis.title.y = element_text(colour="darkgreen"),
