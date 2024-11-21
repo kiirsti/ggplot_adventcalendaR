@@ -1,7 +1,7 @@
 # ggplot_adventcalendaR
 25-day advent calendaR providing an introduction to ggplot2!
 
-<img src="ggplot_calendaR.png" alt="Holiday-themed banner that says, 25 days of gRaphics: a ggplot advent calendaR, created by Kiirsti Owen">
+<img = "ggplot_calendaR.png">
 
 Here it is! A 25-day ggplot advent calendaR, a follow-up to the <a href="https://kiirstio.wixsite.com/kowen/post/the-25-days-of-christmas-an-r-advent-calendar" >R advent calendaR </a> that teaches the very basics in R.
 
