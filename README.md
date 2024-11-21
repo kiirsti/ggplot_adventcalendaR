@@ -1,6 +1,8 @@
 # ggplot_adventcalendaR
 25-day advent calendaR providing an introduction to ggplot2!
 
+<img src="ggplot_calendaR.png" alt="Holiday-themed banner that reads, 25 days of gRaphics: a ggplot advent calendaR, created by Kiirsti Owen">
+
 Here it is! A 25-day ggplot advent calendaR, a follow-up to the <a href="https://kiirstio.wixsite.com/kowen/post/the-25-days-of-christmas-an-r-advent-calendar" >R advent calendaR </a> that teaches the very basics in R.
 
 I know there are so so so many topics I did not cover in this calendaR. I wanted to give you a basic intro to ggplot so I've tried to do so by covering a lot of material using a few examples per day to show the power, versatility, and structure of ggplot2. You may notice that I didn't cover anything related to maps or spatial R. My next goal is a spatial R calendaR (:
